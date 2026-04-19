@@ -1,0 +1,18 @@
+IMPORTANTE
+
+Si vas a ejecutar este proyecto desde PowerShell, NO escribas:
+
+run.bat
+
+Debes escribir:
+
+.\run.bat
+
+Si no usas .\ , PowerShell puede mostrar que el comando no se reconoce.
+
+Pasos:
+
+1. Abre PowerShell en la carpeta del proyecto
+2. Ejecuta:
+
+.\run.bat
