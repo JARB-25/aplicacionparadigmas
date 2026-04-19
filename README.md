@@ -27,18 +27,18 @@ Proyecto Java con interfaz JavaFX usando FXML para gestionar productos agricolas
 - JDK 25 instalado
 - JavaFX SDK instalado en cualquier ruta del equipo
 
-Ejemplo de ruta valida en Windows:
+Opciones para que el proyecto encuentre JavaFX:
+
+1. Definir la variable de entorno `JAVAFX_LIB`
+2. O copiar el SDK dentro del proyecto en la carpeta `javafx-sdk\lib`
+
+Ejemplo de ruta valida para `JAVAFX_LIB`:
 
 ```text
 C:\ruta\hacia\javafx-sdk-25\lib
 ```
 
-Antes de compilar o ejecutar, revisa la variable `JAVAFX_LIB` dentro de:
-
-- `build.bat`
-- `run.bat`
-
-y cambia esa ruta por la ubicacion donde tengas instalado JavaFX en tu computador.
+Si no configuras eso, los scripts mostraran un mensaje indicando que falta JavaFX.
 
 ## Compilar
 
