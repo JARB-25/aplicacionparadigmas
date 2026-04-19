@@ -1,6 +1,11 @@
-IMPORTANTE
+LEER ANTES DE EJECUTAR
 
-Si vas a ejecutar este proyecto desde PowerShell, NO escribas:
+Este proyecto usa JavaFX con FXML.
+Para que funcione en cualquier computador necesitas tener Java y JavaFX.
+
+IMPORTANTE EN POWERSHELL
+
+NO escribas:
 
 run.bat
 
@@ -10,9 +15,120 @@ Debes escribir:
 
 Si no usas .\ , PowerShell puede mostrar que el comando no se reconoce.
 
-Pasos:
+REQUISITOS
+
+1. Tener instalado un JDK compatible.
+   Recomendado: JDK 25
+
+2. Tener instalado JavaFX SDK.
+   Necesitas la carpeta lib del SDK, que contiene archivos como:
+   - javafx.base.jar
+   - javafx.controls.jar
+   - javafx.fxml.jar
+
+COMO SABER SI JAVAFX ESTA BIEN UBICADO
+
+La ruta correcta siempre debe apuntar a la carpeta lib del SDK.
+
+Ejemplo:
+
+C:\ruta\hacia\javafx-sdk-25\lib
+
+NO debe apuntar al zip, ni a bin, ni a una carpeta superior.
+
+FORMAS DE HACER QUE EL PROYECTO FUNCIONE
+
+OPCION 1. DEFINIR LA VARIABLE JAVAFX_LIB
+
+En PowerShell:
+
+$env:JAVAFX_LIB="C:\ruta\hacia\javafx-sdk-25\lib"
+
+Luego ejecuta:
+
+.\run.bat
+
+Esta opcion solo funciona para la terminal actual.
+
+OPCION 2. COPIAR JAVAFX DENTRO DEL PROYECTO
+
+Copia el SDK dentro del proyecto con esta estructura:
+
+javafx-sdk\lib
+
+Es decir, dentro de la carpeta del proyecto debe existir algo como:
+
+productos\javafx-sdk\lib\javafx.controls.jar
+
+Si haces eso, luego solo necesitas ejecutar:
+
+.\run.bat
+
+COMO ENCONTRAR LA RUTA DE JAVAFX EN OTRO COMPUTADOR
+
+En PowerShell puedes buscar el archivo principal asi:
+
+Get-ChildItem C:\ -Recurse -Filter "javafx.controls.jar" -ErrorAction SilentlyContinue
+
+Cuando aparezca una ruta como esta:
+
+C:\algo\javafx-sdk-25\lib\javafx.controls.jar
+
+Entonces la ruta correcta para JAVAFX_LIB sera:
+
+C:\algo\javafx-sdk-25\lib
+
+Y el comando quedaria asi:
+
+$env:JAVAFX_LIB="C:\algo\javafx-sdk-25\lib"
+.\run.bat
+
+PASOS COMPLETOS PARA EJECUTAR EL PROYECTO
 
 1. Abre PowerShell en la carpeta del proyecto
-2. Ejecuta:
 
+2. Si ya tienes JavaFX instalado en otra parte del computador, ejecuta:
+
+$env:JAVAFX_LIB="C:\ruta\real\hacia\javafx-sdk-25\lib"
+
+3. Ejecuta el proyecto:
+
+.\run.bat
+
+QUE HACEN LOS SCRIPTS
+
+build.bat
+- compila los archivos Java
+- crea la carpeta bin si no existe
+- copia GestionProductos.fxml a bin\view
+
+run.bat
+- llama primero a build.bat
+- luego abre la aplicacion JavaFX
+
+SI APARECE ERROR DE JAVAFX
+
+Si ves un mensaje diciendo que no se encontro JavaFX:
+
+1. Revisa que JAVAFX_LIB apunte a una carpeta lib real
+2. Verifica que dentro exista javafx.controls.jar
+3. O copia el SDK a javafx-sdk\lib dentro del proyecto
+
+SI APARECE ERROR EN POWERSHELL
+
+Si te dice que run.bat no se reconoce:
+
+Usa:
+
+.\run.bat
+
+RESUMEN RAPIDO
+
+Comando correcto en PowerShell:
+
+.\run.bat
+
+Si JavaFX no esta configurado:
+
+$env:JAVAFX_LIB="C:\ruta\real\hacia\javafx-sdk-25\lib"
 .\run.bat
